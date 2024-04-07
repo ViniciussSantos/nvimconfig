@@ -34,6 +34,7 @@ local plugins = {
         "pyright",
         "elixirls",
         "nixpkgs-fmt",
+        "elp",
       },
     },
   },

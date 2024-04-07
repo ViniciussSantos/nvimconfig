@@ -130,3 +130,11 @@ lspconfig.ruff_lsp.setup {
   capabilities = capabilities,
   filetypes = { "python" },
 }
+
+lspconfig.elp.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "elp", "server" },
+  filetypes = { "erlang" },
+  root_dir = util.root_pattern("rebar.config", "erlang.mk", ".git"),
+}
