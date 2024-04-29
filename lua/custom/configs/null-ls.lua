@@ -5,7 +5,13 @@ local diagnostics = null_ls.builtins.diagnostics
 
 local sources = {
   formatting.stylua,
-  formatting.prettierd,
+  formatting.prettierd.with {
+    extra_args = function()
+      return {
+        "--single-quote",
+      }
+    end,
+  },
   formatting.clang_format,
   diagnostics.clj_kondo,
   formatting.yamlfix,
