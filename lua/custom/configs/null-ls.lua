@@ -26,8 +26,6 @@ local sources = {
     end,
   },
   formatting.nixpkgs_fmt,
-  -- diagnostics.dotenv_linter,
-  -- formatting.markdownlint,
 }
 
 local opts = {
