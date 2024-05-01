@@ -6,6 +6,7 @@ local diagnostics = null_ls.builtins.diagnostics
 local sources = {
   formatting.stylua,
   formatting.prettierd.with {
+    disabled_filetypes = { "markdown" },
     extra_args = function()
       return {
         "--single-quote",
