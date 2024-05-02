@@ -19,7 +19,6 @@ local sources = {
   formatting.shfmt,
   formatting.gofumpt,
   formatting.goimports_reviser,
-  formatting.black,
   diagnostics.mypy.with {
     extra_args = function()
       local virtual = os.getenv "VIRTUAL_ENV" or os.getenv "CONDA_PREFIX" or "/usr"
