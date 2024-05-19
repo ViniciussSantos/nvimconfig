@@ -26,7 +26,6 @@ local sources = {
     end,
   },
   diagnostics.pylint,
-  formatting.nixpkgs_fmt,
 }
 
 local opts = {
