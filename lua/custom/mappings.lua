@@ -1,5 +1,16 @@
 local M = {}
 
+M.general = {
+  n = {
+    ["<leader>to"] = {
+      function()
+        require("base46").toggle_transparency()
+      end,
+      "Toggle transparency",
+    },
+  },
+}
+
 M.fugitive = {
   n = {
     ["<leader>gsf"] = { "<cmd> G add % <CR>", "Git add file" },
