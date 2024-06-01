@@ -62,18 +62,18 @@ local plugins = {
       require "configs.haskell-tools"
     end,
   },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup {
-        suggestion = {
-          auto_trigger = true,
-        },
-      }
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("copilot").setup {
+  --       suggestion = {
+  --         auto_trigger = true,
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",

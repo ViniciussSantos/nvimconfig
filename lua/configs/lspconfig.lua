@@ -13,15 +13,6 @@ local function organize_imports()
   vim.lsp.buf.execute_command(params)
 end
 
-local function find_ruff_toml()
-  local cwd = vim.fn.expand "%:p:h"
-  local toml = vim.fn.findfile("ruff.toml", cwd)
-  if toml ~= "" then
-    return toml
-  end
-  return ""
-end
-
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
