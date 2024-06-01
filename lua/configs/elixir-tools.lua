@@ -1,8 +1,8 @@
 local elixir = require "elixir"
 local elixirls = require "elixir.elixirls"
 
-local on_attach = require("plugins.configs.lspconfig").on_attach
-local capabilities = require("plugins.configs.lspconfig").capabilities
+local on_attach = require("nvchad.configs.lspconfig").on_attach
+local capabilities = require("nvchad.configs.lspconfig").capabilities
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 elixir.setup {
