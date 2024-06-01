@@ -31,7 +31,7 @@ local plugins = {
         "mypy",
         "ruff-lsp",
         "pyright",
-        "elixirls",
+        "elixi-rls",
         "nixpkgs-fmt",
         "elp",
       },
