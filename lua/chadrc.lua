@@ -6,24 +6,27 @@ M.ui = {
   changed_themes = {
     catppuccin = {
       base_16 = {
-        base00 = "#1E1D2D",
-        base01 = "#282737",
-        base02 = "#2f2e3e",
-        base03 = "#383747",
-        base04 = "#414050",
-        base05 = "#bfc6d4",
-        base06 = "#ccd3e1",
-        base07 = "#D9E0EE",
-        base08 = "#eba0ac",
+        base00 = "#1e1e2e",
+        base01 = "#181825",
+        base02 = "#313244",
+        base03 = "#45475a",
+        base04 = "#585b70",
+        base05 = "#cdd6f4",
+        base06 = "#f5e0dc",
+        base07 = "#b4befe",
+        base08 = "#f38ba8",
         base09 = "#fab387",
         base0A = "#f9e2af",
         base0B = "#a6e3a1",
-        base0C = "#89DCEB",
-        base0D = "#89B4FA",
-        base0E = "#CBA6F7",
-        base0F = "#F38BA8",
+        base0C = "#94e2d5",
+        base0D = "#89b4fa",
+        base0E = "#cba6f7",
+        base0F = "#f2cdcd",
       },
     },
   },
 }
+
+-- M.plugins = "plugins"
+-- M.mappings = require "mappings"
 return M
