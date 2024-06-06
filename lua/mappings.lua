@@ -59,3 +59,8 @@ map(
 
 -- Todo Comments mappings
 map("n", "<leader>tt", "<cmd>TodoTelescope<CR>", { desc = "Search for TODOs" })
+
+-- custom mappings
+map("n", "<leader>lf", function()
+  vim.diagnostic.open_float { border = "rounded" }
+end, { desc = "Floating diagnostic" })
