@@ -33,6 +33,7 @@ local plugins = {
         "pyright",
         "elixir-ls",
         "elp",
+        "nil",
       },
     },
   },

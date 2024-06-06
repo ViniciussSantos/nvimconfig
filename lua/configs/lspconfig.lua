@@ -139,3 +139,10 @@ lspconfig.elp.setup {
   filetypes = { "erlang" },
   root_dir = util.root_pattern("rebar.config", "erlang.mk", ".git"),
 }
+require("lspconfig").nil_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "nil" },
+  filetypes = { "nix" },
+  root_dir = util.root_pattern("flake.nix", ".git"),
+}
