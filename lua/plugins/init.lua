@@ -32,7 +32,6 @@ local plugins = {
         "ruff-lsp",
         "pyright",
         "elixir-ls",
-        "nixpkgs-fmt",
         "elp",
       },
     },
