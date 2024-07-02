@@ -124,13 +124,5 @@ local plugins = {
     event = "VeryLazy",
     opts = {},
   },
-  {
-    "dmmulroy/tsc.nvim",
-    ft = { "typescript", "typescriptreact", "typescript.tsx" },
-    config = function()
-      require "configs.tsc"
-    end,
-    opts = {},
-  },
 }
 return plugins
