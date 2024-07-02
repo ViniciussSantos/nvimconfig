@@ -124,14 +124,6 @@ local plugins = {
     opts = {},
   },
   {
-    "dmmulroy/tsc.nvim",
-    ft = { "typescript", "typescriptreact", "typescript.tsx" },
-    config = function()
-      require "configs.tsc"
-    end,
-    opts = {},
-  },
-  {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     opts = function()
