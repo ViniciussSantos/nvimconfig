@@ -55,7 +55,7 @@ local plugins = {
   },
   {
     "mrcjkb/haskell-tools.nvim",
-    version = "^3",
+    version = "^4",
     dependencies = "neovim/nvim-lspconfig",
     ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
     config = function()
