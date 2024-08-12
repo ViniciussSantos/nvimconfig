@@ -8,34 +8,62 @@ local plugins = {
   },
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "stylua",
-        "fourmolu",
-        "typescript-language-server",
-        "prettierd",
-        "eslint-lsp",
-        "gopls",
-        "clangd",
-        "clang-format",
-        "rust-analyzer",
-        "zls",
-        "clojure-lsp",
-        "clj-kondo",
-        "yamlfix",
-        "shfmt",
-        "bash-language-server",
-        "gofumpt",
-        "goimports-reviser",
-        "mypy",
-        "ruff-lsp",
-        "pyright",
-        "elixir-ls",
-        "elp",
-        "nil",
-      },
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    config = function()
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "MasonToolsStartingInstall",
+        callback = function()
+          vim.schedule(function()
+            print "mason-tool-installer is starting"
+          end)
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "MasonToolsUpdateCompleted",
+        callback = function(e)
+          vim.schedule(function()
+            print(vim.inspect(e.data)) -- print the table that lists the programs that were installed
+          end)
+        end,
+      })
+
+      require("mason-tool-installer").setup {
+        auto_update = true,
+        ensure_installed = {
+          "lua-language-server",
+          "stylua",
+          "fourmolu",
+          "typescript-language-server",
+          "prettierd",
+          "eslint-lsp",
+          "gopls",
+          "clangd",
+          "clang-format",
+          "rust-analyzer",
+          "zls",
+          "clojure-lsp",
+          "clj-kondo",
+          "yamlfix",
+          "shfmt",
+          "bash-language-server",
+          "gofumpt",
+          "goimports-reviser",
+          "mypy",
+          "ruff-lsp",
+          "pyright",
+          "elixir-ls",
+          "elp",
+          "nil",
+        },
+      }
+    end,
   },
   {
     "rust-lang/rust.vim",
