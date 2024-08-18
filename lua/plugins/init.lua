@@ -163,5 +163,12 @@ local plugins = {
       require("nvim-tree").setup(opts)
     end,
   },
+  {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {}
+    end,
+  },
 }
 return plugins
