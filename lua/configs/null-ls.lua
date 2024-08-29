@@ -12,7 +12,6 @@ local sources = {
       }
     end,
   },
-  formatting.clang_format,
   diagnostics.clj_kondo,
   formatting.yamlfix,
   formatting.shfmt,
