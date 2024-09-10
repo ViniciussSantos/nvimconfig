@@ -13,7 +13,7 @@ local function organize_imports()
   vim.lsp.buf.execute_command(params)
 end
 
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   init_options = {
@@ -139,4 +139,11 @@ lspconfig.elp.setup {
   cmd = { "elp", "server" },
   filetypes = { "erlang" },
   root_dir = util.root_pattern("rebar.config", "erlang.mk", ".git"),
+}
+require("lspconfig").nil_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "nil" },
+  filetypes = { "nix" },
+  root_dir = util.root_pattern("flake.nix", ".git"),
 }
