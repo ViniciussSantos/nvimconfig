@@ -1,4 +1,5 @@
 require "nvchad.mappings"
+local gitsigns = require "gitsigns"
 
 local map = vim.keymap.set
 
@@ -75,3 +76,7 @@ map({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
 map({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
 map({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
 map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
+
+map("n", "<leader>gb", function()
+  gitsigns.blame_line { full = true }
+end)
