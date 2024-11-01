@@ -77,6 +77,9 @@ map({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
 map({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
 map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
 
+-- gitsigns mappings
 map("n", "<leader>gb", function()
-  gitsigns.blame_line { full = true }
+  gitsigns.blame_line { full = false }
 end)
+map("n", "<leader>rh", gitsigns.reset_hunk)
+map("n", "<leader>ph", gitsigns.preview_hunk)
