@@ -61,6 +61,7 @@ local plugins = {
           "elixir-ls",
           "elp",
           "nil",
+          "html-lsp",
         },
       }
     end,

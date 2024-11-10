@@ -148,3 +148,8 @@ lspconfig.nil_ls.setup {
   filetypes = { "nix" },
   root_dir = util.root_pattern("flake.nix", ".git"),
 }
+
+require("lspconfig").html.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
