@@ -148,11 +148,14 @@ lspconfig.nil_ls.setup {
   filetypes = { "nix" },
   root_dir = util.root_pattern("flake.nix", ".git"),
 }
+<<<<<<< Updated upstream
 
 require("lspconfig").html.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
+||||||| Stash base
+=======
 
 require("lspconfig").sqlls.setup {
   on_attach = on_attach,
@@ -160,3 +163,4 @@ require("lspconfig").sqlls.setup {
   cmd = { "sql-language-server", "up", "--method", "stdio" },
   filetypes = { "sql", "mysql" },
 }
+>>>>>>> Stashed changes

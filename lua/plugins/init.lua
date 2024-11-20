@@ -62,6 +62,7 @@ local plugins = {
           "elp",
           "nil",
           "html-lsp",
+          "sqlls",
         },
       }
     end,

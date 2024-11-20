@@ -126,7 +126,7 @@ lspconfig.pyright.setup {
   filetypes = { "python" },
 }
 
-lspconfig.ruff.setup {
+lspconfig.ruff_lsp.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "ruff-lsp" },
@@ -141,17 +141,12 @@ lspconfig.elp.setup {
   root_dir = util.root_pattern("rebar.config", "erlang.mk", ".git"),
 }
 
-lspconfig.nil_ls.setup {
+require("lspconfig").nil_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "nil" },
   filetypes = { "nix" },
   root_dir = util.root_pattern("flake.nix", ".git"),
-}
-
-require("lspconfig").html.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
 }
 
 require("lspconfig").sqlls.setup {

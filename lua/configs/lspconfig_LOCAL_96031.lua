@@ -153,10 +153,3 @@ require("lspconfig").html.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
-
-require("lspconfig").sqlls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "sql-language-server", "up", "--method", "stdio" },
-  filetypes = { "sql", "mysql" },
-}
