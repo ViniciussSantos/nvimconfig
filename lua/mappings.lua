@@ -80,6 +80,6 @@ map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
 -- gitsigns mappings
 map("n", "<leader>gb", function()
   gitsigns.blame_line { full = false }
-end)
-map("n", "<leader>rh", gitsigns.reset_hunk)
-map("n", "<leader>ph", gitsigns.preview_hunk)
+end, { desc = "git blame" })
+map("n", "<leader>rh", gitsigns.reset_hunk, { desc = "reset hunk" })
+map("n", "<leader>ph", gitsigns.preview_hunk, { desc = "preview hunk" })

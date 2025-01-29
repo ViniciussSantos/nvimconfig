@@ -5,6 +5,4 @@ M.ui = {
   transparency = true,
 }
 
--- M.plugins = "plugins"
--- M.mappings = require "mappings"
 return M
