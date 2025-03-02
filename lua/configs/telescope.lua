@@ -1,9 +1,10 @@
 dofile(vim.g.base46_cache .. "telescope")
 
-return {
+local telescope = require "telescope"
+telescope.setup {
   defaults = {
     prompt_prefix = "   ",
-    selection_caret = " ",
+    selection_caret = " ",
     entry_prefix = " ",
     sorting_strategy = "ascending",
     layout_config = {
@@ -22,3 +23,8 @@ return {
   extensions_list = { "themes", "terms" },
   extensions = {},
 }
+
+require("telescope").load_extension "fzf"
+require("telescope").load_extension "undo"
+require("telescope").load_extension "conflicts"
+require("telescope").load_extension "egrepify"

@@ -116,10 +116,6 @@ local plugins = {
     event = "User FilePost",
   },
   {
-    "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
-  },
-  {
     "nvim-pack/nvim-spectre",
     dependencies = "nvim-lua/plenary.nvim",
     event = "VeryLazy",
@@ -135,12 +131,6 @@ local plugins = {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-  },
-  {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    event = "VeryLazy",
-    opts = {},
   },
   {
     "nvim-tree/nvim-tree.lua",
@@ -187,10 +177,18 @@ local plugins = {
   },
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      -- extensions
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      "debugloop/telescope-undo.nvim",
+      "Snikimonkd/telescope-git-conflicts.nvim",
+      "fdschmidt93/telescope-egrepify.nvim",
+    },
     cmd = "Telescope",
-    opts = function()
-      return require "nvchad.configs.telescope"
+    config = function()
+      require "configs.telescope"
     end,
   },
 }
