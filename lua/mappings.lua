@@ -61,13 +61,17 @@ map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find mark
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find oldfiles" })
 map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in current buffer" })
 map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
+map("n", "<leader>cb", "<cmd>Telescope git_bcommits<CR>", { desc = "telescope git buffer commits" })
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
 map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
-
-map("n", "<leader>th", function()
-  require("nvchad.themes").open()
-end, { desc = "telescope nvchad themes" })
-
+map("n", "<leader>ts", "<cmd>Telescope treesitter<CR>", { desc = "telescope list nodes with treesitter" })
+map("n", "<leader>td", "<cmd>TodoTelescope<CR>", { desc = "Search for TODOs" })
+map(
+  "n",
+  "<leader>tl",
+  "<cmd>Telescope lsp_document_symbols<CR>",
+  { desc = "telescope Lists LSP symbols in current buffer" }
+)
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
 map(
   "n",
@@ -75,6 +79,9 @@ map(
   "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
   { desc = "telescope find all files" }
 )
+map("n", "<leader>th", function()
+  require("nvchad.themes").open()
+end, { desc = "telescope nvchad themes" })
 
 -- terminal
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
@@ -164,7 +171,6 @@ map(
 )
 
 -- Todo Comments mappings
-map("n", "<leader>tt", "<cmd>TodoTelescope<CR>", { desc = "Search for TODOs" })
 
 -- custom mappings
 map("n", "<leader>lf", function()
