@@ -54,7 +54,7 @@ map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" }
 map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
 
 -- telescope
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
+map("n", "<leader>fw", "<cmd>Telescope egrepify<CR>", { desc = "telescope live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
 map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
@@ -63,12 +63,13 @@ map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = 
 map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
 map("n", "<leader>cb", "<cmd>Telescope git_bcommits<CR>", { desc = "telescope git buffer commits" })
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
+map("n", "<leader>tc", "<cmd>Telescope conflicts<CR>", { desc = "telescope git conflicts" })
 map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
 map("n", "<leader>ts", "<cmd>Telescope treesitter<CR>", { desc = "telescope list nodes with treesitter" })
-map("n", "<leader>td", "<cmd>TodoTelescope<CR>", { desc = "Search for TODOs" })
+map("n", "<leader>u", "<cmd>Telescope undo<CR>", { desc = "telescope undo" })
 map(
   "n",
-  "<leader>tl",
+  "<leader>td",
   "<cmd>Telescope lsp_document_symbols<CR>",
   { desc = "telescope Lists LSP symbols in current buffer" }
 )
