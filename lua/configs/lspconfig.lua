@@ -129,7 +129,7 @@ lspconfig.pyright.setup {
 lspconfig.ruff.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "ruff-lsp" },
+  cmd = { "ruff", "server" },
   filetypes = { "python" },
 }
 

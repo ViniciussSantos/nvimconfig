@@ -56,7 +56,7 @@ local plugins = {
           "gofumpt",
           "goimports-reviser",
           "mypy",
-          "ruff-lsp",
+          "ruff",
           "pyright",
           "elixir-ls",
           "elp",
