@@ -60,6 +60,8 @@ lspconfig.clangd.setup {
     end
   end,
   capabilities = capabilities,
+
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 }
 
 lspconfig.gopls.setup {
