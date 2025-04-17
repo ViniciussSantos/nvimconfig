@@ -2,33 +2,6 @@ return {
   "nvim-lua/plenary.nvim",
 
   {
-    "nvchad/base46",
-    build = function()
-      require("base46").load_all_highlights()
-    end,
-  },
-
-  {
-    "nvchad/ui",
-    lazy = false,
-    config = function()
-      require "nvchad"
-    end,
-  },
-
-  "nvzone/volt",
-  "nvzone/menu",
-  { "nvzone/minty", cmd = { "Huefy", "Shades" } },
-
-  {
-    "nvim-tree/nvim-web-devicons",
-    opts = function()
-      dofile(vim.g.base46_cache .. "devicons")
-      return { override = require "nvchad.icons.devicons" }
-    end,
-  },
-
-  {
     "lukas-reineke/indent-blankline.nvim",
     event = "User FilePost",
     opts = {
@@ -47,14 +20,6 @@ return {
   },
 
   {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = function()
-      return require "nvchad.configs.nvimtree"
-    end,
-  },
-
-  {
     "folke/which-key.nvim",
     keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
     cmd = "WhichKey",
@@ -64,15 +29,6 @@ return {
     end,
   },
 
-  {
-    "lewis6991/gitsigns.nvim",
-    event = "User FilePost",
-    opts = function()
-      return require "nvchad.configs.gitsigns"
-    end,
-  },
-
-  -- load luasnips + cmp related in insert mode only
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -88,7 +44,6 @@ return {
         end,
       },
 
-      -- autopairing of (){}[] etc
       {
         "windwp/nvim-autopairs",
         opts = {
@@ -114,7 +69,7 @@ return {
       },
     },
     opts = function()
-      return require "nvchad.configs.cmp"
+      return require "onfigs.cmp"
     end,
   },
 }
