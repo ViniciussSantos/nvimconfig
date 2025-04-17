@@ -1,5 +1,5 @@
-local on_attach = require("configs.base_lsp").on_attach
-local capabilities = require("configs.lspconfig").capabilities
+local on_attach = require("configs.base-lspconfig").on_attach
+local capabilities = require("configs.base-lspconfig").capabilities
 
 vim.g.rustaceanvim = {
   server = {
