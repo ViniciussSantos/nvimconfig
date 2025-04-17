@@ -1,5 +1,5 @@
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+local on_attach = require("configs.base_lsp").on_attach
+local capabilities = require("configs.base_lsp").capabilities
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 vim.g.haskell_tools = {
