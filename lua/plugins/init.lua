@@ -8,6 +8,10 @@ local plugins = {
   },
   {
     "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+    opts = function()
+      return require "configs.mason"
+    end,
     dependencies = {
       "neovim/nvim-lspconfig",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
