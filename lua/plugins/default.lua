@@ -69,7 +69,7 @@ return {
       },
     },
     opts = function()
-      return require "onfigs.cmp"
+      return require "configs.cmp"
     end,
   },
 }
