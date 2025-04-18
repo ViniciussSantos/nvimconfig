@@ -1,17 +1,9 @@
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+local on_attach = require("configs.base-lspconfig").on_attach
+local capabilities = require("configs.base-lspconfig").capabilities
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local lspconfig = require "lspconfig"
 local util = require "lspconfig/util"
-
-local function organize_imports()
-  local params = {
-    command = "_typescript.organizeImports",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-  }
-  vim.lsp.buf.execute_command(params)
-end
 
 lspconfig.ts_ls.setup {
   on_attach = on_attach,
@@ -19,12 +11,6 @@ lspconfig.ts_ls.setup {
   init_options = {
     preferences = {
       disableSuggestions = true,
-    },
-  },
-  commands = {
-    OrganizeImports = {
-      organize_imports,
-      description = "Organize Imports",
     },
   },
   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },

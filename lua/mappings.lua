@@ -24,7 +24,7 @@ map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
 
 map("n", "<leader>fm", function()
-  require("conform").format { lsp_fallback = true }
+  vim.lsp.buf.format { async = true }
 end, { desc = "general format file" })
 
 -- global lsp mappings
@@ -170,8 +170,6 @@ map(
   '<cmd> lua require("spectre").open_visual({select_word=true}) <CR>',
   { desc = "Spectre Search current word" }
 )
-
--- Todo Comments mappings
 
 -- custom mappings
 map("n", "<leader>lf", function()
