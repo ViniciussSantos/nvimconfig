@@ -81,7 +81,6 @@ return {
   {
     "mrcjkb/rustaceanvim",
     dependencies = "neovim/nvim-lspconfig",
-    version = "^5",
     ft = { "rust" },
     config = function()
       require "configs.rustacean"
@@ -89,7 +88,6 @@ return {
   },
   {
     "mrcjkb/haskell-tools.nvim",
-    version = "^4",
     dependencies = "neovim/nvim-lspconfig",
     ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
     config = function()
