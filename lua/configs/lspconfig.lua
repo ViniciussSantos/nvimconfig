@@ -46,8 +46,16 @@ lspconfig.clangd.setup {
     end
   end,
   capabilities = capabilities,
-
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+  root_dir = util.root_pattern(
+    ".clangd",
+    ".clang-tidy",
+    ".clang-format",
+    "compile_commands.json",
+    "compile_flags.txt",
+    "configure.ac",
+    ".git"
+  ),
 }
 
 lspconfig.gopls.setup {
