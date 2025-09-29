@@ -2,10 +2,15 @@ local on_attach = require("configs.base-lspconfig").on_attach
 local capabilities = require("configs.base-lspconfig").capabilities
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local lspconfig = require "lspconfig"
-local util = require "lspconfig/util"
 
-lspconfig.ts_ls.setup {
+local util = require "lspconfig.util"
+
+local function register_lsp(name, cfg)
+  vim.lsp.config[name] = vim.tbl_deep_extend("force", vim.lsp.config[name] or {}, cfg)
+  vim.lsp.enable(name)
+end
+
+register_lsp("ts_ls", {
   on_attach = on_attach,
   capabilities = capabilities,
   init_options = {
@@ -13,29 +18,35 @@ lspconfig.ts_ls.setup {
       disableSuggestions = true,
     },
   },
-  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+  },
   root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
-}
+})
 
-lspconfig.eslint.setup {
-  on_attach = function(_, bufnr)
+register_lsp("eslint", {
+  on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       command = "EslintFixAll",
     })
   end,
-}
+})
 
-lspconfig.clangd.setup {
+-- clangd
+register_lsp("clangd", {
   on_attach = function(client, bufnr)
     client.server_capabilities.signatureHelpProvider = false
 
     on_attach(client, bufnr)
+
     if client.supports_method "textDocument/formatting" then
-      vim.api.nvim_clear_autocmds {
-        group = augroup,
-        buffer = bufnr,
-      }
+      vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = augroup,
         buffer = bufnr,
@@ -56,9 +67,9 @@ lspconfig.clangd.setup {
     "configure.ac",
     ".git"
   ),
-}
+})
 
-lspconfig.gopls.setup {
+register_lsp("gopls", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "gopls" },
@@ -73,35 +84,32 @@ lspconfig.gopls.setup {
       },
     },
   },
-}
+})
 
-lspconfig.bashls.setup {
+register_lsp("bashls", {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "sh" },
   bashIde = {
     globPattern = "*@(.sh|.inc|.bash|.command)",
   },
-}
+})
 
-lspconfig.clojure_lsp.setup {
+register_lsp("clojure_lsp", {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "clojure", "edn" },
   root_dir = util.root_pattern("project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", ".git", "bb.edn"),
-}
+})
 
-lspconfig.zls.setup {
+register_lsp("zls", {
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     client.server_capabilities.documentFormattingProvider = true
     client.server_capabilities.documentRangeFormattingProvider = true
 
     if client.supports_method "textDocument/formatting" then
-      vim.api.nvim_clear_autocmds {
-        group = augroup,
-        buffer = bufnr,
-      }
+      vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = augroup,
         buffer = bufnr,
@@ -114,45 +122,45 @@ lspconfig.zls.setup {
   capabilities = capabilities,
   filetypes = { "zig", "zir" },
   root_dir = util.root_pattern("zls.json", ".git"),
-}
+})
 
-lspconfig.pyright.setup {
+register_lsp("pyright", {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "python" },
-}
+})
 
-lspconfig.ruff.setup {
+register_lsp("ruff", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "ruff", "server" },
   filetypes = { "python" },
-}
+})
 
-lspconfig.elp.setup {
+register_lsp("elp", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "elp", "server" },
   filetypes = { "erlang" },
   root_dir = util.root_pattern("rebar.config", "erlang.mk", ".git"),
-}
+})
 
-lspconfig.nil_ls.setup {
+register_lsp("nil_ls", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "nil" },
   filetypes = { "nix" },
   root_dir = util.root_pattern("flake.nix", ".git"),
-}
+})
 
-require("lspconfig").html.setup {
+register_lsp("html", {
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
 
-require("lspconfig").sqlls.setup {
+register_lsp("sqlls", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "sql-language-server", "up", "--method", "stdio" },
   filetypes = { "sql", "mysql" },
-}
+})
