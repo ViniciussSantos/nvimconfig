@@ -1,5 +1,5 @@
-local on_attach = require("configs.base-lspconfig").on_attach
-local capabilities = require("configs.base-lspconfig").capabilities
+local base_on_attach = require("configs.base-lspconfig").on_attach
+local base_capabilities = require("configs.base-lspconfig").capabilities
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
@@ -11,16 +11,18 @@ local function register_lsp(name, cfg)
 end
 
 register_lsp("ts_ls", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = base_on_attach,
+  capabilities = base_capabilities,
 })
 
 register_lsp("eslint", {
   on_attach = function(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
+    base_on_attach(client, bufnr)
+    -- vim.api.nvim_create_autocmd("BufWritePre", {
+    --   callback = function()
+    --     vim.lsp.buf.format()
+    --   end,
+    -- })
   end,
 })
 
@@ -29,7 +31,7 @@ register_lsp("clangd", {
   on_attach = function(client, bufnr)
     client.server_capabilities.signatureHelpProvider = false
 
-    on_attach(client, bufnr)
+    base_on_attach(client, bufnr)
 
     if client.supports_method "textDocument/formatting" then
       vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
@@ -42,7 +44,7 @@ register_lsp("clangd", {
       })
     end
   end,
-  capabilities = capabilities,
+  capabilities = base_capabilities,
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   root_dir = util.root_pattern(
     ".clangd",
@@ -56,8 +58,8 @@ register_lsp("clangd", {
 })
 
 register_lsp("gopls", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = base_on_attach,
+  capabilities = base_capabilities,
   cmd = { "gopls" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
@@ -73,8 +75,8 @@ register_lsp("gopls", {
 })
 
 register_lsp("bashls", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = base_on_attach,
+  capabilities = base_capabilities,
   filetypes = { "sh" },
   bashIde = {
     globPattern = "*@(.sh|.inc|.bash|.command)",
@@ -82,15 +84,15 @@ register_lsp("bashls", {
 })
 
 register_lsp("clojure_lsp", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = base_on_attach,
+  capabilities = base_capabilities,
   filetypes = { "clojure", "edn" },
   root_dir = util.root_pattern("project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", ".git", "bb.edn"),
 })
 
 register_lsp("zls", {
   on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
+    base_on_attach(client, bufnr)
     client.server_capabilities.documentFormattingProvider = true
     client.server_capabilities.documentRangeFormattingProvider = true
 
@@ -105,48 +107,57 @@ register_lsp("zls", {
       })
     end
   end,
-  capabilities = capabilities,
+  capabilities = base_capabilities,
   filetypes = { "zig", "zir" },
   root_dir = util.root_pattern("zls.json", ".git"),
 })
 
 register_lsp("pyright", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = base_on_attach,
+  capabilities = base_capabilities,
   filetypes = { "python" },
 })
 
 register_lsp("ruff", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = base_on_attach,
+  capabilities = base_capabilities,
+  init_options = {
+    settings = {
+      configuration = {
+        format = {
+          ["quote-style"] = "preserve",
+        },
+      },
+    },
+  },
   cmd = { "ruff", "server" },
   filetypes = { "python" },
 })
 
 register_lsp("elp", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = base_on_attach,
+  capabilities = base_capabilities,
   cmd = { "elp", "server" },
   filetypes = { "erlang" },
   root_dir = util.root_pattern("rebar.config", "erlang.mk", ".git"),
 })
 
 register_lsp("nil_ls", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = base_on_attach,
+  capabilities = base_capabilities,
   cmd = { "nil" },
   filetypes = { "nix" },
   root_dir = util.root_pattern("flake.nix", ".git"),
 })
 
 register_lsp("html", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = base_on_attach,
+  capabilities = base_capabilities,
 })
 
 register_lsp("sqlls", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = base_on_attach,
+  capabilities = base_capabilities,
   cmd = { "sql-language-server", "up", "--method", "stdio" },
   filetypes = { "sql", "mysql" },
 })
