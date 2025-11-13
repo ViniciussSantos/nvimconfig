@@ -154,10 +154,3 @@ register_lsp("html", {
   on_attach = base_on_attach,
   capabilities = base_capabilities,
 })
-
-register_lsp("sqlls", {
-  on_attach = base_on_attach,
-  capabilities = base_capabilities,
-  cmd = { "sql-language-server", "up", "--method", "stdio" },
-  filetypes = { "sql", "mysql" },
-})
