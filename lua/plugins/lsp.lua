@@ -64,9 +64,7 @@ return {
           "pyright",
           "elixir-ls",
           "elp",
-          "nil",
           "html-lsp",
-          "sqlls",
         },
       }
     end,
