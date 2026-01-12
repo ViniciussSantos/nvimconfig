@@ -36,6 +36,9 @@ o.splitright = true
 o.timeoutlen = 400
 o.undofile = true
 
+-- add spell checking
+o.spelllang = "en_us"
+
 -- interval for writing swap file to disk, also used by gitsigns
 o.updatetime = 250
 
