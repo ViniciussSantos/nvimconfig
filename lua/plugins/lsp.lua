@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    event = "User FilePost",
     config = function()
       require("configs.base-lspconfig").defaults()
       require "configs.lspconfig"

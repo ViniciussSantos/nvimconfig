@@ -52,26 +52,31 @@ M.capabilities.textDocument.completion.completionItem = {
 }
 
 M.defaults = function()
-  vim.lsp.config("*", { capabilities = M.capabilities, on_init = M.on_init, on_attach = M.on_attach })
-
   dofile(vim.g.base46_cache .. "lsp")
   require("nvchad.lsp").diagnostic_config()
 
-  vim.lsp.config("lua_ls", {
-    settings = {
-      Lua = {
-        workspace = {
-          library = {
-            vim.fn.expand "$VIMRUNTIME/lua",
-            vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
-            vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
-            "${3rd}/luv/library",
-          },
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      M.on_attach(_, args.buf)
+    end,
+  })
+
+  local lua_lsp_settings = {
+    Lua = {
+      runtime = { version = "LuaJIT" },
+      workspace = {
+        library = {
+          vim.fn.expand "$VIMRUNTIME/lua",
+          vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
+          vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+          "${3rd}/luv/library",
         },
       },
     },
-  })
+  }
 
+  vim.lsp.config("*", { capabilities = M.capabilities, on_init = M.on_init })
+  vim.lsp.config("lua_ls", { settings = lua_lsp_settings })
   vim.lsp.enable "lua_ls"
 end
 
