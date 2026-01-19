@@ -26,6 +26,7 @@ local plugins = {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
@@ -36,17 +37,17 @@ local plugins = {
       return require "configs.treesitter"
     end,
     config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+      require("nvim-treesitter.config").setup(opts)
     end,
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    lazy = true,
+    branch = "main",
     opts = function()
       return require "configs.treesitter-textobjects"
     end,
     config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+      require("nvim-treesitter.config").setup(opts)
     end,
   },
   {
