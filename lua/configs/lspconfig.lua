@@ -26,35 +26,9 @@ register_lsp("eslint", {
   end,
 })
 
--- clangd
 register_lsp("clangd", {
-  on_attach = function(client, bufnr)
-    client.server_capabilities.signatureHelpProvider = false
-
-    base_on_attach(client, bufnr)
-
-    if client.supports_method "textDocument/formatting" then
-      vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format { bufnr = bufnr }
-        end,
-      })
-    end
-  end,
+  on_attach = base_on_attach,
   capabilities = base_capabilities,
-  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-  root_dir = util.root_pattern(
-    ".clangd",
-    ".clang-tidy",
-    ".clang-format",
-    "compile_commands.json",
-    "compile_flags.txt",
-    "configure.ac",
-    ".git"
-  ),
 })
 
 register_lsp("gopls", {
