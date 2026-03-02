@@ -116,12 +116,11 @@ register_lsp("elp", {
   root_dir = util.root_pattern("rebar.config", "erlang.mk", ".git"),
 })
 
-register_lsp("nil_ls", {
+register_lsp("nil", {
   on_attach = base_on_attach,
   capabilities = base_capabilities,
-  cmd = { "nil" },
+  cmd = { "nil", "--stdio" },
   filetypes = { "nix" },
-  root_dir = util.root_pattern("flake.nix", ".git"),
 })
 
 register_lsp("html", {
