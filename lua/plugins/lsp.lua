@@ -66,6 +66,7 @@ return {
           "elixir-ls",
           "elp",
           "html-lsp",
+          "nil",
         },
       }
     end,
