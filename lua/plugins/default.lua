@@ -70,4 +70,13 @@ return {
       return require "configs.cmp"
     end,
   },
+  {
+    "ycdzj/auto-reload.nvim",
+    lazy = false,
+    opts = {
+      reload = {
+        cooldown_ms = 0,
+      },
+    },
+  },
 }
