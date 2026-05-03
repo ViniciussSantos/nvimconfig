@@ -3,8 +3,6 @@ local base_capabilities = require("configs.base-lspconfig").capabilities
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-local util = require "lspconfig.util"
-
 local function register_lsp(name, cfg)
   vim.lsp.config[name] = vim.tbl_deep_extend("force", vim.lsp.config[name] or {}, cfg)
   vim.lsp.enable(name)
@@ -34,18 +32,6 @@ register_lsp("clangd", {
 register_lsp("gopls", {
   on_attach = base_on_attach,
   capabilities = base_capabilities,
-  cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-  settings = {
-    gopls = {
-      completeUnimported = true,
-      usePlaceholders = true,
-      analyses = {
-        unusedparams = true,
-      },
-    },
-  },
 })
 
 register_lsp("bashls", {
@@ -60,8 +46,6 @@ register_lsp("bashls", {
 register_lsp("clojure_lsp", {
   on_attach = base_on_attach,
   capabilities = base_capabilities,
-  filetypes = { "clojure", "edn" },
-  root_dir = util.root_pattern("project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", ".git", "bb.edn"),
 })
 
 register_lsp("zls", {
@@ -82,8 +66,6 @@ register_lsp("zls", {
     end
   end,
   capabilities = base_capabilities,
-  filetypes = { "zig", "zir" },
-  root_dir = util.root_pattern("zls.json", ".git"),
 })
 
 register_lsp("pyright", {
@@ -111,16 +93,11 @@ register_lsp("ruff", {
 register_lsp("elp", {
   on_attach = base_on_attach,
   capabilities = base_capabilities,
-  cmd = { "elp", "server" },
-  filetypes = { "erlang" },
-  root_dir = util.root_pattern("rebar.config", "erlang.mk", ".git"),
 })
 
 register_lsp("nil", {
   on_attach = base_on_attach,
   capabilities = base_capabilities,
-  cmd = { "nil", "--stdio" },
-  filetypes = { "nix" },
 })
 
 register_lsp("html", {
