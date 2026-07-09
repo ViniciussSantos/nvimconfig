@@ -1,30 +1,74 @@
 return {
-
   {
-    "nvchad/base46",
-    build = function()
-      require("base46").load_all_highlights()
-    end,
-  },
-
-  {
-    "nvchad/ui",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,
-    config = function()
-      require "nvchad"
+    priority = 1000,
+    opts = {
+      flavour = "mocha",
+      transparent_background = true,
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        telescope = { enabled = true },
+        treesitter = true,
+        which_key = true,
+        indent_blankline = { enabled = true },
+        mason = true,
+        native_lsp = { enabled = true },
+      },
+    },
+    config = function(_, opts)
+      require("catppuccin").setup(opts)
+      vim.cmd.colorscheme "catppuccin"
     end,
   },
 
-  "nvzone/volt",
-  "nvzone/menu",
-  { "nvzone/minty", cmd = { "Huefy", "Shades" } },
   {
     "nvim-tree/nvim-web-devicons",
-    opts = function()
-      dofile(vim.g.base46_cache .. "devicons")
-      return { override = require "nvchad.icons.devicons" }
-    end,
+    opts = {},
   },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
+    opts = {
+      options = {
+        theme = "auto",
+        globalstatus = true,
+        section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
+      },
+    },
+  },
+
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
+    opts = {
+      options = {
+        diagnostics = "nvim_lsp",
+        always_show_bufferline = true,
+        offsets = {
+          { filetype = "NvimTree", text = "File Explorer", separator = true },
+        },
+      },
+    },
+  },
+
+  {
+    "akinsho/toggleterm.nvim",
+    cmd = "ToggleTerm",
+    opts = {
+      shade_terminals = true,
+      direction = "float",
+      float_opts = { border = "curved" },
+    },
+  },
+
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
@@ -32,7 +76,6 @@ return {
       return require "configs.nvimtree"
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "nvimtree")
       require("nvim-tree").setup(opts)
     end,
   },

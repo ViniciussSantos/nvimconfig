@@ -21,7 +21,6 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
-map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
 
 map("n", "<leader>fm", function()
   vim.lsp.buf.format { async = true }
@@ -30,19 +29,13 @@ end, { desc = "general format file" })
 -- global lsp mappings
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 
--- tabufline
+-- bufferline
 map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
-
-map("n", "<tab>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "buffer goto next" })
-
-map("n", "<S-tab>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "buffer goto prev" })
+map("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "buffer goto next" })
+map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "buffer goto prev" })
 
 map("n", "<leader>x", function()
-  require("nvchad.tabufline").close_buffer()
+  require("utils").close_buffer()
 end, { desc = "buffer close" })
 
 -- comment
@@ -80,34 +73,19 @@ map(
   "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
   { desc = "telescope find all files" }
 )
-map("n", "<leader>th", function()
-  require("nvchad.themes").open()
-end, { desc = "telescope nvchad themes" })
+map("n", "<leader>th", "<cmd>Telescope colorscheme<CR>", { desc = "telescope colorschemes" })
 
 -- terminal
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
 -- new terminals
-map("n", "<leader>h", function()
-  require("nvchad.term").new { pos = "sp" }
-end, { desc = "terminal new horizontal term" })
-
-map("n", "<leader>v", function()
-  require("nvchad.term").new { pos = "vsp" }
-end, { desc = "terminal new vertical term" })
+map("n", "<leader>h", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "terminal new horizontal term" })
+map("n", "<leader>v", "<cmd>ToggleTerm direction=vertical size=60<CR>", { desc = "terminal new vertical term" })
 
 -- toggleable
-map({ "n", "t" }, "<A-v>", function()
-  require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
-end, { desc = "terminal toggleable vertical term" })
-
-map({ "n", "t" }, "<A-h>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
-end, { desc = "terminal toggleable horizontal term" })
-
-map({ "n", "t" }, "<A-i>", function()
-  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
-end, { desc = "terminal toggle floating term" })
+map({ "n", "t" }, "<A-v>", "<cmd>ToggleTerm direction=vertical size=60<CR>", { desc = "terminal toggleable vertical term" })
+map({ "n", "t" }, "<A-h>", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "terminal toggleable horizontal term" })
+map({ "n", "t" }, "<A-i>", "<cmd>ToggleTerm direction=float<CR>", { desc = "terminal toggle floating term" })
 
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey all keymaps" })
@@ -118,7 +96,7 @@ end, { desc = "whichkey query lookup" })
 
 -- General mappings
 map("n", "<leader>to", function()
-  require("base46").toggle_transparency()
+  require("utils").toggle_transparency()
 end, { noremap = true, silent = true, desc = "Toggle transparency" })
 
 -- Fugitive mappings

@@ -1,5 +1,3 @@
-dofile(vim.g.base46_cache .. "telescope")
-
 local telescope = require "telescope"
 telescope.setup {
   defaults = {
@@ -20,7 +18,6 @@ telescope.setup {
     },
   },
 
-  extensions_list = { "themes", "terms" },
   extensions = {},
 }
 

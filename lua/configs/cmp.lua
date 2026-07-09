@@ -1,9 +1,12 @@
-dofile(vim.g.base46_cache .. "cmp")
-
 local cmp = require "cmp"
 
 local options = {
   completion = { completeopt = "menu,menuone" },
+
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
 
   snippet = {
     expand = function(args)
@@ -54,4 +57,4 @@ local options = {
   },
 }
 
-return vim.tbl_deep_extend("force", options, require "nvchad.cmp")
+return options

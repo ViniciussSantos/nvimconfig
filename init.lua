@@ -1,5 +1,5 @@
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -24,12 +24,11 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
-
 require "options"
 require "autocmds"
 
 vim.schedule(function()
   require "mappings"
 end)
+
+require("p9").setup()

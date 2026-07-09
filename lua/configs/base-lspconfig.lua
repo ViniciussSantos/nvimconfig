@@ -18,7 +18,7 @@ M.on_attach = function(_, bufnr)
   end, opts "List workspace folders")
 
   map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
-  map("n", "<leader>ra", require "nvchad.lsp.renamer", opts "NvRenamer")
+  map("n", "<leader>ra", vim.lsp.buf.rename, opts "Rename symbol")
   map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
 
   map("n", "gr", vim.lsp.buf.references, opts "Show references")
@@ -55,8 +55,19 @@ M.capabilities.textDocument.completion.completionItem = {
 }
 
 M.defaults = function()
-  dofile(vim.g.base46_cache .. "lsp")
-  require("nvchad.lsp").diagnostic_config()
+  vim.diagnostic.config {
+    virtual_text = true,
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = "󰅚 ",
+        [vim.diagnostic.severity.WARN] = "󰀪 ",
+        [vim.diagnostic.severity.INFO] = "󰋽 ",
+        [vim.diagnostic.severity.HINT] = "󰌶 ",
+      },
+    },
+    underline = true,
+    float = { border = "rounded" },
+  }
 
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
@@ -70,7 +81,6 @@ M.defaults = function()
       workspace = {
         library = {
           vim.fn.expand "$VIMRUNTIME/lua",
-          vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
           vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
           "${3rd}/luv/library",
         },

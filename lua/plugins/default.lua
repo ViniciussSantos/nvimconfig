@@ -4,18 +4,15 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "User FilePost",
+    main = "ibl",
     opts = {
-      indent = { char = "│", highlight = "IblChar" },
-      scope = { char = "│", highlight = "IblScopeChar" },
+      indent = { char = "│" },
+      scope = { char = "│" },
     },
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "blankline")
-
       local hooks = require "ibl.hooks"
       hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
       require("ibl").setup(opts)
-
-      dofile(vim.g.base46_cache .. "blankline")
     end,
   },
 
@@ -23,10 +20,7 @@ return {
     "folke/which-key.nvim",
     keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
     cmd = "WhichKey",
-    opts = function()
-      dofile(vim.g.base46_cache .. "whichkey")
-      return {}
-    end,
+    opts = {},
   },
 
   {
