@@ -1,8 +1,6 @@
 local base_on_attach = require("configs.base-lspconfig").on_attach
 local base_capabilities = require("configs.base-lspconfig").capabilities
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
 local function register_lsp(name, cfg)
   vim.lsp.config[name] = vim.tbl_deep_extend("force", vim.lsp.config[name] or {}, cfg)
   vim.lsp.enable(name)
@@ -78,4 +76,13 @@ register_lsp("nil", {
 register_lsp("html", {
   on_attach = base_on_attach,
   capabilities = base_capabilities,
+})
+
+local mason_path = vim.fn.stdpath "data" .. "/mason"
+register_lsp("elixirls", {
+  on_attach = base_on_attach,
+  capabilities = base_capabilities,
+  cmd = {
+    mason_path .. "/packages/elixir-ls/language_server.sh",
+  },
 })

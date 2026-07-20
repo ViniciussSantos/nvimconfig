@@ -24,6 +24,7 @@ local sources = {
       return { "--python-executable", virtual .. "/bin/python3" }
     end,
   },
+  formatting.mix,
 }
 
 local opts = {
