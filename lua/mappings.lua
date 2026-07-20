@@ -83,7 +83,12 @@ map("n", "<leader>h", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "term
 map("n", "<leader>v", "<cmd>ToggleTerm direction=vertical size=60<CR>", { desc = "terminal new vertical term" })
 
 -- toggleable
-map({ "n", "t" }, "<A-v>", "<cmd>ToggleTerm direction=vertical size=60<CR>", { desc = "terminal toggleable vertical term" })
+map(
+  { "n", "t" },
+  "<A-v>",
+  "<cmd>ToggleTerm direction=vertical size=60<CR>",
+  { desc = "terminal toggleable vertical term" }
+)
 map({ "n", "t" }, "<A-h>", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "terminal toggleable horizontal term" })
 map({ "n", "t" }, "<A-i>", "<cmd>ToggleTerm direction=float<CR>", { desc = "terminal toggle floating term" })
 

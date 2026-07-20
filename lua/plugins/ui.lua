@@ -5,7 +5,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "mocha",
+      flavour = "macchiato",
       transparent_background = true,
       integrations = {
         cmp = true,
@@ -50,6 +50,7 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
+        separator_style = "slant",
         diagnostics = "nvim_lsp",
         always_show_bufferline = true,
         offsets = {
