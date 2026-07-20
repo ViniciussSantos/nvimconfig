@@ -48,26 +48,6 @@ register_lsp("clojure_lsp", {
   capabilities = base_capabilities,
 })
 
-register_lsp("zls", {
-  on_attach = function(client, bufnr)
-    base_on_attach(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = true
-    client.server_capabilities.documentRangeFormattingProvider = true
-
-    if client.supports_method "textDocument/formatting" then
-      vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format { bufnr = bufnr }
-        end,
-      })
-    end
-  end,
-  capabilities = base_capabilities,
-})
-
 register_lsp("pyright", {
   on_attach = base_on_attach,
   capabilities = base_capabilities,
@@ -88,11 +68,6 @@ register_lsp("ruff", {
   },
   cmd = { "ruff", "server" },
   filetypes = { "python" },
-})
-
-register_lsp("elp", {
-  on_attach = base_on_attach,
-  capabilities = base_capabilities,
 })
 
 register_lsp("nil", {
