@@ -99,15 +99,4 @@ return {
       return require "configs.null-ls"
     end,
   },
-  {
-    "elixir-tools/elixir-tools.nvim",
-    version = "*",
-    ft = { "elixir" },
-    config = function()
-      require "configs.elixir-tools"
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-  },
 }
